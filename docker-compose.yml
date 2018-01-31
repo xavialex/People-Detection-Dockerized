@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+    people_detector:
+        image: people_detector:1.2.0
+        container_name: people_detector
+        build:
+            context: .
+        environment:
+            VIDEO_IP: ${VIDEO_IP}
+            IMAGE_REFRESH: ${IMAGE_REFRESH}
+            DOCKER_PORT: ${DOCKER_PORT}
+            UI_PORT: ${UI_PORT}
+        ports:
+            - ${UI_PORT}:${DOCKER_PORT}

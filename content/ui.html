@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+    background-image: url('http://robohub.org/wp-content/uploads/2017/02/grid-AI.jpg');
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top" id="T">Waiting for temperature signal</h1>  
+    <h1 class="w3-jumbo w3-animate-top" id="X">Waiting for detection signal</h1>
+      
+      <button type="button" id="show_detection">Show detection screen</button>
+      <button type="button" id="hide_detection", style="display: none;">Hide detection screen</button>
+
+    
+      <img id="imagen" src="/img?333" style="visibility: hidden;"/>
+    
+      
+    <hr class="w3-border-grey" style="margin:auto;width:40%">
+    <p class="w3-large w3-center">35 days left</p>
+  </div>
+  <div class="w3-display-bottomleft w3-padding-large">
+    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
+  </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+        // Loading room temperature
+        setInterval(function() {
+                $.ajax("/temperature").then(function(temperature) {
+                    if(temperature == "None") {
+                        $("#T").text("Waiting for temperature signal");
+                    }
+                    else {
+                        $("#T").text(temperature + "ºC");
+                    }
+                });
+        }, 500);
+        
+        // Loading number of persons detected
+        setInterval(function() {
+                $.ajax("/total").then(function(n_people) {
+                    if(Number(n_people) == 1) {
+                        $("#X").text(n_people + " person");
+                    }
+                    else {
+                        $("#X").text(n_people + " persons");
+                    }
+                });
+        }, 500);
+        
+        // Detection image toggle mechanism
+        $(function() {
+            $("#show_detection").click(function() {
+                $("#show_detection").hide();
+                $("#hide_detection").show();
+                $("#imagen").attr("style", "visibility: visible;");
+                $("#imagen").attr("src", "/img?" + Math.random());
+                $("#imagen").on('load', function() {
+                    $("#imagen").attr("src", "/img?" + Math.random());
+                });
+            });
+
+            $("#hide_detection").click(function() {
+                $("#hide_detection").hide();
+                $("#imagen").css("visibility", "hidden");
+                $("#imagen").attr("style", "visibility: hidden;");
+                $("#show_detection").show();
+            });
+        });
+    </script>
+
+</body>
+</html>

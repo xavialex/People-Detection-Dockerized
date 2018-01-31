@@ -1,0 +1,30 @@
+name: object_detection_env
+channels:
+- defaults
+dependencies:
+- python=3.6.3
+- certifi=2017.11.5
+- freetype=2.8
+- intel-openmp=2018.0.0
+- jpeg=9b
+- libpng=1.6.32
+- libtiff=4.0.9
+- mkl=2018.0.1
+- numpy=1.14.0
+- olefile=0.44
+- opencv=3.3.1
+- pillow=4.3.0
+- pip=9.0.1
+- setuptools
+- tk=8.6.7
+- wheel=0.30.0
+- zlib=1.2.11
+- pip:
+  - bleach==1.5.0
+  - enum34==1.1.6
+  - html5lib==0.9999999
+  - markdown==2.6.10
+  - protobuf==3.5.0.post1
+  - six==1.11.0
+  - tensorflow==1.5.0
+  - werkzeug==0.13
