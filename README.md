@@ -15,7 +15,7 @@ cd project_route
 docker-compose -d --build .
 ```
 
-The image will tak 2.67 GB, so it may take several minutes to get ready.  
+The image will occupy 2.67 GB, so it may take several minutes to get ready.  
 
 Prepare the signal-sender machine to deliver the video signal through HTTP (for example with VLC). Then change the required variables stored in the ```.env``` file, which are:
 > * **VIDEO_IP**: HTTP address sended for it's processing.
